@@ -1,4 +1,4 @@
-package composition;
+package buoi2.composition;
 
 public class CompoApp {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package composition;
+package buoi2.composition;
 
 public class Person {
 
