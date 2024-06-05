@@ -18,12 +18,13 @@ public class CalculatorWindow extends JFrame
     private JTextField jTextFieldInputRemote1, jTextFieldInputRemote2;
     private JPanel jPanelRemote;
     private JButton addButtonRemote, subButtonRemote;
+    private Calculator calculatorRemote;
 
     CalculatorWindow() {
-
+        calculatorRemote = new Calculator();
         buildPanel();
         add(jPanelRemote);
-
+        setTitle("Frame Viewer");
         setSize(400, 400);
         setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,26 +61,19 @@ public class CalculatorWindow extends JFrame
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        double num1 = Double.parseDouble(jTextFieldInputRemote1.getText());
+        // lấy data từ text field 2
+        double num2 = Double.parseDouble(jTextFieldInputRemote2.getText());
+        // cộng
         String command = e.getActionCommand();
         if (command.equals("ADD")) {
-            // lấy data từ input 1
-            double num1 = Double.parseDouble(jTextFieldInputRemote1.getText());
-            // lấy data từ text field 2
-            double num2 = Double.parseDouble(jTextFieldInputRemote2.getText());
-            // cộng
-            double sum = num1 + num2;
-            // label output object
-            jLabelOutputRemote.setText("" + sum);
+
+            calculatorRemote.add(num1, num2);
+            
+          
+            jLabelOutputRemote.setText("" + calculatorRemote.getResult());
         }else if (command.equals("SUB")){
-            // lấy data từ input 1
-            double num1 = Double.parseDouble(jTextFieldInputRemote1.getText());
-            // lấy data từ text field 2
-            double num2 = Double.parseDouble(jTextFieldInputRemote2.getText());
-            // cộng
-            double sub = num1 - num2;
-            // label output object
-            jLabelOutputRemote.setText("" + sub);
+         
         }
 
     }
