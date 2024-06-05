@@ -10,17 +10,17 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CalculatorWindow extends JFrame 
-implements ActionListener {
+public class CalculatorWindow extends JFrame
+        implements ActionListener {
 
     private JLabel jLabelInputRemote1, jLabelInputRemote2,
-    jLabelOutputRemote;
+            jLabelOutputRemote;
     private JTextField jTextFieldInputRemote1, jTextFieldInputRemote2;
     private JPanel jPanelRemote;
     private JButton addButtonRemote, subButtonRemote;
 
-    CalculatorWindow(){
-        
+    CalculatorWindow() {
+
         buildPanel();
         add(jPanelRemote);
 
@@ -32,11 +32,11 @@ implements ActionListener {
     public void buildPanel() {
 
         jLabelInputRemote1 = new JLabel("input1");
-        //add(jLabelInputRemote1);
+        // add(jLabelInputRemote1);
         jTextFieldInputRemote1 = new JTextField(10);
-        //add(jTextFieldInputRemote1);
+        // add(jTextFieldInputRemote1);
         jPanelRemote = new JPanel();
-        //jPanelRemote.setBackground(Color.GREEN);
+        // jPanelRemote.setBackground(Color.GREEN);
         jPanelRemote.add(jLabelInputRemote1);
         jPanelRemote.add(jTextFieldInputRemote1);
 
@@ -49,26 +49,38 @@ implements ActionListener {
         jPanelRemote.add(jLabelOutputRemote);
 
         addButtonRemote = new JButton("ADD");
-        addButtonRemote.addActionListener(this);//calculatorWindowRemote === this
+        addButtonRemote.addActionListener(this);// calculatorWindowRemote === this
         subButtonRemote = new JButton("SUB");
+        subButtonRemote.addActionListener(this);
 
         jPanelRemote.add(addButtonRemote);
         jPanelRemote.add(subButtonRemote);
-        
+
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        //lấy data từ input 1
-        double num1 = Double.
-                parseDouble(jTextFieldInputRemote1.getText());
-        //lấy data từ text field 2
-        double num2 = Double.
-                parseDouble(jTextFieldInputRemote2.getText());
-        //cộng
-        double sum = num1 + num2;
-        //label output object
-        jLabelOutputRemote.setText("" + sum);
+
+        String command = e.getActionCommand();
+        if (command.equals("ADD")) {
+            // lấy data từ input 1
+            double num1 = Double.parseDouble(jTextFieldInputRemote1.getText());
+            // lấy data từ text field 2
+            double num2 = Double.parseDouble(jTextFieldInputRemote2.getText());
+            // cộng
+            double sum = num1 + num2;
+            // label output object
+            jLabelOutputRemote.setText("" + sum);
+        }else if (command.equals("SUB")){
+            // lấy data từ input 1
+            double num1 = Double.parseDouble(jTextFieldInputRemote1.getText());
+            // lấy data từ text field 2
+            double num2 = Double.parseDouble(jTextFieldInputRemote2.getText());
+            // cộng
+            double sub = num1 - num2;
+            // label output object
+            jLabelOutputRemote.setText("" + sub);
+        }
 
     }
 }
