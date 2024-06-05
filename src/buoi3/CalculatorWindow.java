@@ -1,6 +1,8 @@
 package buoi3;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -8,7 +10,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class CalculatorWindow extends JFrame {
+public class CalculatorWindow extends JFrame 
+implements ActionListener {
 
     private JLabel jLabelInputRemote1, jLabelInputRemote2,
     jLabelOutputRemote;
@@ -42,11 +45,30 @@ public class CalculatorWindow extends JFrame {
         jPanelRemote.add(jLabelInputRemote2);
         jPanelRemote.add(jTextFieldInputRemote2);
 
+        jLabelOutputRemote = new JLabel("Output");
+        jPanelRemote.add(jLabelOutputRemote);
+
         addButtonRemote = new JButton("ADD");
+        addButtonRemote.addActionListener(this);//calculatorWindowRemote === this
         subButtonRemote = new JButton("SUB");
 
         jPanelRemote.add(addButtonRemote);
         jPanelRemote.add(subButtonRemote);
         
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        //lấy data từ input 1
+        double num1 = Double.
+                parseDouble(jTextFieldInputRemote1.getText());
+        //lấy data từ text field 2
+        double num2 = Double.
+                parseDouble(jTextFieldInputRemote2.getText());
+        //cộng
+        double sum = num1 + num2;
+        //label output object
+        jLabelOutputRemote.setText("" + sum);
+
     }
 }
