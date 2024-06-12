@@ -1,6 +1,9 @@
 package buoi4.ecb;
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,21 +19,9 @@ public class CalculatorBoundary extends JFrame
     private JPanel jPanelRemote;
     private JButton addButtonRemote, subButtonRemote;
     private CalculatorControl calculatorControlRemote;
-
-    public JTextField getjTextFieldInputRemote1() {
-        return jTextFieldInputRemote1;
-    }
-
-    public JTextField getjTextFieldInputRemote2() {
-        return jTextFieldInputRemote2;
-    }
-
-    public JLabel getjLabelOutputRemote() {
-        return jLabelOutputRemote;
-    }
-
+   
     CalculatorBoundary() {
-        calculatorControlRemote = new CalculatorControl(this);
+        calculatorControlRemote = new CalculatorControl();
         buildPanel();
         add(jPanelRemote);
         setTitle("Frame Viewer");
@@ -67,6 +58,38 @@ public class CalculatorBoundary extends JFrame
         jPanelRemote.add(subButtonRemote);
 
     }
+
+    class CalculatorControl implements ActionListener {
+
+        //field
+        private CalculatorEntity calculatorEntityRemote = null;
+        //private CalculatorBoundary calculatorBoundaryRemote = null;
+    
+        CalculatorControl(){
+            calculatorEntityRemote = new CalculatorEntity();
+            //this.calculatorBoundaryRemote = calculatorBoundaryRemote;
+        }
+    
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            double num1 = Double.parseDouble(
+            jTextFieldInputRemote1.getText());
+            // lấy data từ text field 2
+            double num2 = Double.parseDouble(
+            jTextFieldInputRemote2.getText());
+            // cộng
+            String command = e.getActionCommand();
+            if (command.equals("ADD")) {
+                calculatorEntityRemote.add(num1, num2);
+                jLabelOutputRemote.setText("" + calculatorEntityRemote.getResult());
+    
+            }else if (command.equals("SUB")){
+             
+            }
+    
+        }
+    }
+    
 }
 
    
