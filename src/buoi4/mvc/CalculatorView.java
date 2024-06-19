@@ -1,12 +1,16 @@
 package buoi4.mvc;
 
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -22,12 +26,16 @@ public class CalculatorView extends JFrame implements Subcriber
     private JButton addButtonRemote, subButtonRemote;
     private CalculatorController calculatorControlRemote;
     private CalculatorModel calculatorModelRemote;
+    private JMenuBar menuBarRemote = null;
    
     CalculatorView() {
         calculatorControlRemote = new CalculatorController();
         calculatorModelRemote = new CalculatorModel();
         calculatorModelRemote.subcribe(this);//dang ky Subcriber voi Publisher
         buildPanel();
+        buildMenu();
+        //đặt menu bar vào trong cửa sổ
+        setJMenuBar(menuBarRemote);
         add(jPanelRemote);
         setTitle("Frame Viewer");
         setSize(400, 400);
@@ -64,6 +72,20 @@ public class CalculatorView extends JFrame implements Subcriber
 
     }
 
+    public void buildMenu() {
+        menuBarRemote = new JMenuBar();
+        //menuBarRemote.setBackground(Color.BLUE);
+        JMenu calMenuRemote = new JMenu("Calculator");
+        //đặt menu vào thanh Menu
+        menuBarRemote.add(calMenuRemote);
+
+        //Menu Item
+        JMenuItem addItemRemote = new JMenuItem("ADD");
+
+        //đặt menu item vào trong menu
+        calMenuRemote.add(addItemRemote);
+
+    }
     class CalculatorController implements ActionListener {
 
         //field
