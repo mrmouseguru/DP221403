@@ -14,6 +14,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import buoi4.mvc.command_processor.CommandProcessor;
 import buoi4.mvc.observer.Subcriber;
 
 public class CalculatorView extends JFrame implements Subcriber
@@ -28,10 +29,13 @@ public class CalculatorView extends JFrame implements Subcriber
     private CalculatorModel calculatorModelRemote;
     private MenuController menuControllerRemote = null;
     private JMenuBar menuBarRemote = null;
+    private CommandProcessor commandProcessorRemote = null;
    
     CalculatorView() {
         calculatorControlRemote = new CalculatorController();
         menuControllerRemote = new MenuController();
+        //use singleton
+        commandProcessorRemote = CommandProcessor.makeCommandProcessor();
 
         calculatorModelRemote = new CalculatorModel();
         calculatorModelRemote.subcribe(this);//dang ky Subcriber voi Publisher
