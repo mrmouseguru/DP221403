@@ -14,6 +14,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import buoi4.mvc.command_processor.AddCommand;
+import buoi4.mvc.command_processor.Command;
 import buoi4.mvc.command_processor.CommandProcessor;
 import buoi4.mvc.observer.Subcriber;
 
@@ -136,10 +138,12 @@ public class CalculatorView extends JFrame implements Subcriber
             jTextFieldInputRemote2.getText());
             // cộng
             String command = e.getActionCommand();
+            Command commandRemote = null;
             if (command.equals("ADD")) {
-                calculatorModelRemote.add(num1, num2);//message to Model
+                //calculatorModelRemote.add(num1, num2);//message to Model
                 //jLabelOutputRemote.setText("" + calculatorModelRemote.getResult());
-    
+                commandRemote = new AddCommand(calculatorModelRemote, num1, num2);
+                commandProcessorRemote.execute(commandRemote);
             }else if (command.equals("SUB")){
              
             }
